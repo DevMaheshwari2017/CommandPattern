@@ -9,14 +9,16 @@ namespace Command.Actions
     {
         private UnitController actorUnit;
         private UnitController targetUnit;
+        private bool isSuccessfull;
         TargetType IAction.TargetType { get => TargetType.Self; }
 
-        public void PerformAction(UnitController actorUnit, UnitController targetUnit)
+        public void PerformAction(UnitController actorUnit, UnitController targetUnit,bool isSuccessfull)
         {
             this.actorUnit = actorUnit;
             this.targetUnit = targetUnit;
+            this.isSuccessfull = isSuccessfull;
 
-            actorUnit.PlayBattleAnimation(ActionType.AttackStance, CalculateMovePosition(targetUnit), OnActionAnimationCompleted);
+            actorUnit.PlayBattleAnimation(CommandType.AttackStance, CalculateMovePosition(targetUnit), OnActionAnimationCompleted);
         }
 
         public void OnActionAnimationCompleted()
